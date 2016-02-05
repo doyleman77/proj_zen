@@ -1,7 +1,6 @@
 TODO:
-*Fix entity image drawing
-*let's get him to move!
+*make them png.
+*regulate FPS
+*command line switches
 ---------------------
 *get some images
-*make them png.
-*fix ctr

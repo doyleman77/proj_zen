@@ -39,22 +39,70 @@ void Game::run()
     while(running == true)
     {
         // Input
-        while(SDL_PollEvent(&event))
+        if(SDL_PollEvent(&event))
         {
             if(event.type == SDL_QUIT)
                 running = false;
+
             if(event.type == SDL_KEYDOWN)
             {
-                if(event.key.keysym.sym == SDLK_ESCAPE)
+                switch(event.key.keysym.sym)
+                {
+                case SDLK_UP:
+                    ent->move_up = true;
+                    ent->y_vel = -1;
+                    break;
+                case SDLK_RIGHT:
+                    ent->move_right = true;
+                    ent->x_vel = 1;
+                    break;
+                case SDLK_DOWN:
+                    ent->move_down = true;
+                    ent->y_vel = 1;
+                    break;
+                case SDLK_LEFT:
+                    ent->move_left = true;
+                    ent->x_vel = -1;
+                    break;
+                case SDLK_ESCAPE:
                     running = false;
+                    break;
+                default:
+                    break;
+                }
+            }
+            else if(event.type == SDL_KEYUP)
+            {
+                switch(event.key.keysym.sym)
+                {
+                case SDLK_UP:
+                    ent->move_up = false;
+                    ent->y_vel = 0;
+                    break;
+                case SDLK_RIGHT:
+                    ent->move_right = false;
+                    ent->x_vel = 0;
+                    break;
+                case SDLK_DOWN:
+                    ent->move_down = false;
+                    ent->y_vel = 0;
+                    break;
+                case SDLK_LEFT:
+                    ent->move_left = false;
+                    ent->x_vel = 0;
+                    break;
+                default:
+                    break;
+                }
             }
         }
 
         // Update
         ent->update();
         // Draw
-        ent->draw(renderer);
         SDL_RenderClear(renderer);
+        ent->draw(renderer);
+
         SDL_SetRenderDrawColor(renderer, 175, 215, 125, 0);
         SDL_RenderPresent(renderer);
         SDL_Delay(16);

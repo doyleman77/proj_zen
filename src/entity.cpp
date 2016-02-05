@@ -4,7 +4,7 @@
 
 Entity::Entity(SDL_Renderer* renderer)
 {
-    x = y = 0;
+    x = y = x_vel = y_vel = 0;
     sprite.x = sprite.y = sprite.w = sprite.h = 0;
 
     SDL_Surface* temp_surface = SDL_LoadBMP("test.bmp");
@@ -38,14 +38,17 @@ void Entity::move(int temp_x, int temp_y)
 
 void Entity::draw(SDL_Renderer* renderer)
 {
-    SDL_Rect temp;
-    temp.x = temp.y = 0;
-    temp.w = temp.h = 240;
+    SDL_Rect temp = sprite;
+    temp.x = x;
+    temp.y = y;
     SDL_RenderCopy(renderer, image, &sprite, &temp);
 
 }
 
 void Entity::update()
 {
-
+    if(move_up) move(x, y+y_vel);
+    if(move_right) move(x+x_vel, y);
+    if(move_down) move(x, y+y_vel);
+    if(move_left) move(x+x_vel, y);
 }
