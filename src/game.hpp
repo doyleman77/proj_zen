@@ -2,6 +2,7 @@
 
 #include <string>
 #include "SDL2/SDL.h"
+#include "entity.hpp"
 
 class Game
 {
@@ -18,4 +19,9 @@ private:
     SDL_Window* window;
     SDL_Renderer* renderer;
     SDL_Event event;
+
+    ///todo: remove, move to main or somewhere more
+    ///useful
+    Entity* ent;
+
 };

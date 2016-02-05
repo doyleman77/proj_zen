@@ -1,0 +1,7 @@
+TODO:
+*Fix entity image drawing
+*let's get him to move!
+---------------------
+*get some images
+*make them png.
+*fix ctr

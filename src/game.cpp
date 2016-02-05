@@ -12,17 +12,16 @@ Game::Game()
     window = SDL_CreateWindow(window_title.c_str(), SDL_WINDOWPOS_UNDEFINED,
                               SDL_WINDOWPOS_UNDEFINED, window_width,
                               window_height, 0);
-    if(window == nullptr)
+    if(window == NULL)
     {
         std::cout << "Error creating window " << SDL_GetError();
-        return;
     }
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if(renderer == nullptr)
+    if(renderer == NULL)
     {
         std::cout << "Error creating renderer " << SDL_GetError();
-        return;
     }
+    ent = new Entity(renderer);
 }
 
 Game::~Game()
@@ -52,10 +51,11 @@ void Game::run()
         }
 
         // Update
-
+        ent->update();
         // Draw
+        ent->draw(renderer);
         SDL_RenderClear(renderer);
-        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 0);
+        SDL_SetRenderDrawColor(renderer, 175, 215, 125, 0);
         SDL_RenderPresent(renderer);
         SDL_Delay(16);
     }
